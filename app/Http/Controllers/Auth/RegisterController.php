@@ -46,6 +46,15 @@ class RegisterController extends Controller
             $mail = $request->input('mail');
             $password = $request->input('password');
 
+         $request->validate([
+              'username' => 'required|min:2|max:12',
+              'mail' => 'required|min:5|max:40|unique:users,mail|email:filter,dns',
+              'password' => 'required|min:8|max:20|alpha_num|confirmed',
+              'password_confirmation' => 'required|min:8|max:20|alpha_num'
+        ]);
+
+         $request->session()->put('UserName', $username);
+
             User::create([
                 'username' => $username,
                 'mail' => $mail,

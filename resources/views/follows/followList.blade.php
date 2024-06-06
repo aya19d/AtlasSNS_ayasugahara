@@ -2,4 +2,50 @@
 
 @section('content')
 
+
+<!-- アイコン表示 -->
+<div class=followicon_container>
+  <p class=follow_title>フォローリスト</p>
+  <div class=followlist_block>
+@foreach($users as $user)
+
+<!-- useridを自分がフォローしていたら -->
+@if (auth()->user()->isFollowing($user->id))
+
+<!-- 自分以外表示 -->
+@if ($user->id !== Auth::user()->id)
+
+<p class="followlist_btn"><a href="/profile/{{$user->id}}"><img src="images/icon1.png" class=follow_icon></a></p>
+
+@endif
+@endif
+
+@endforeach
+</div>
+</div>
+
+<!-- 名前と投稿 -->
+<ul>
+@foreach($posts as $post)
+
+<!-- useridが自分のことをフォローしていたら -->
+@if (auth()->user()->isFollowed($user->id))
+<!-- 自分以外表示 -->
+@if ($user->id !== Auth::user()->id)
+<li class=post_block>
+  <div class=post_block1>
+  <p class="btn"><a href="/profile/{{$post->user_id}}"><img src="images/icon1.png" class=post_icon></a></p>
+  <div class=post_content>
+ <div class=post_name>{{ $post -> user -> username}}</div>
+ <div class=post_post>{{ $post->post }}</div>
+</div>
+ <div class=post_time>{{ $post -> created_at}}</div>
+</div>
+@endif
+@endif
+
+@endforeach
+</li>
+</ul>
+
 @endsection

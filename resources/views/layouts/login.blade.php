@@ -21,44 +21,52 @@
 </head>
 <body>
     <header>
-        <div id = "head">
-        <h1><a><img src="images/logo.png"></a></h1>
-            <div id="">
-                <div id="">
-                    <p>〇〇さん<img src="images/arrow.png"></p>
-                <div>
-                <ul>
-                    <li><a href="/top">ホーム</a></li>
-                    <li><a href="/profile">プロフィール</a></li>
-                    <li><a href="/logout">ログアウト</a></li>
-                </ul>
+        <div id="headmenu">
+                <h1><a href=/top><img src="{{ asset('images/atlas.png') }} " class=atlaslogo></a></h1>
+            <div class=headcontent>
+                <p class=headname>{{Auth::user()->username}}さん</p>
+                <div class="menu">
+                    <input type="checkbox" id="menu_bar01" />
+                    <label for="menu_bar01"></label>
+                   <ul id="links">
+                    <li><a href="/top" class=menu_text>HOME</a></li>
+                    <li><a href="/myprofile/{{Auth::user()->id}}" class=menu_text>プロフィール編集</a></li>
+                    <li><a href="/logout" class=menu_text>ログアウト</a></li>
+                   </ul>
+                </div>
+
+                <img src="{{ asset('images/icon1.png') }} " class=headicon>
             </div>
         </div>
+
     </header>
+
     <div id="row">
         <div id="container">
             @yield('content')
         </div >
         <div id="side-bar">
-            <div id="confirm">
-                <p>〇〇さんの</p>
+            <div id="follow_info">
+                <p>{{Auth::user()->username}}さんの</p>
                 <div>
-                <p>フォロー数</p>
-                <p>〇〇名</p>
+                <p class=number>フォロー数
+                {{ Auth::user()->following()->get()->count() }}名</p>
                 </div>
-                <p class="btn"><a href="">フォローリスト</a></p>
+                <p><a href="/follow-list" class="btn_list">フォローリスト</a></p>
                 <div>
-                <p>フォロワー数</p>
-                <p>〇〇名</p>
+                <p class=number>フォロワー数
+                {{ Auth::user()->followed()->get()->count() }}名</p>
                 </div>
-                <p class="btn"><a href="">フォロワーリスト</a></p>
+                <p><a href="/follower-list" class="btn_list">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="">ユーザー検索</a></p>
+            <p class=border><a href="/search" class="btn_search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
+    <!-- jQuery CDNで提供されたリンク -->
+    <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+    <script src="{{ asset('js/script.js') }} "></script>
     <script src="JavaScriptファイルのURL"></script>
 </body>
 </html>

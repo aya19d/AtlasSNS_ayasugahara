@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\Follow;
 use Auth;
 
 class LoginController extends Controller
@@ -37,6 +38,7 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+        // $this->middleware('auth');
     }
 
     public function login(Request $request){
@@ -49,6 +51,14 @@ class LoginController extends Controller
                 return redirect('/top');
             }
         }
-        return view("auth.login");
+
+        $following = Follow::where('following_id', Auth::id())->get();
+
+        return view("auth.login", compact('following'));
     }
+
+   protected function loggedOut(\Illuminate\Http\Request $request) {
+      return redirect('login');
+
+}
 }

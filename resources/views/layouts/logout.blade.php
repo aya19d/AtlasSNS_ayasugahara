@@ -21,8 +21,8 @@
 </head>
 <body>
   <header>
-    <h1><img src="images/atlas.png"></h1>
-    <p>Social Network Service</p>
+    <h1><img src="images/atlas.png" class=header_title></h1>
+    <p class=header_text>Social Network Service</p>
   </header>
   <div id="container">
     @yield('content')
