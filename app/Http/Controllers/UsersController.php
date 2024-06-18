@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\User;
 use Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Image;
 
 class UsersController extends Controller
 {
@@ -60,27 +62,30 @@ class UsersController extends Controller
         $password = $request->input('password');
         $bio = $request->input('bio');
 
-        if ($request->input('images')){
-            // name属性が'images'のinputタグをファイル形式に、画像をpublic/imagesに保存
-        $images = $request->file('images')->store('public/images/');
-                // 上記処理にて保存した画像に名前を付け、userテーブルのthumbnailカラムに、格納
-        $user->images = basename($images);
+        if ($images = $request->file('images')){
+            $user = Auth::user();
 
-        $user->save();}
+       // name属性が'images'のinputタグをファイル形式に、画像をpublic/imagesに保存
+        $images_save = $request->file('images')->store('public/storage');
 
-        else{
-            $images = Auth::user()->images;
-        }
+        // 上記処理にて保存した画像に名前を付け、userテーブルのthumbnailカラムに、格納
+        $user->images = basename($images_save);
+
+        $user->save();
+
+}
+
+
 
         // 2つ目の処理
         User::where('id', $id)->update([
               'username' => $username,
-              'password' => $password,
+              'password' => Hash::make($password),
               'bio' => $bio,
-              'images' => $images
+            //   'images' => $images
         ]);
         // 3つ目の処理
-        return back();
+        return redirect('/top');
 }
 
 }

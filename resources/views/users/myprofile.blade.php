@@ -40,7 +40,7 @@
             </div>
             <div class=myprof_block>
             {{ Form::label('myprof_list','アイコン画像') }}
-            {{ Form::input('file', 'images', $user->images, [ 'class' => 'form-control']) }}
+            {{ Form::input('file','images', $user->images,[ 'class' => 'form-control']) }}
             </div>
 
         </div>

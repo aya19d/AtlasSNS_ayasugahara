@@ -15,7 +15,7 @@
 <!-- 自分以外表示 -->
 @if ($user->id !== Auth::user()->id)
 
-<p class="followlist_btn"><a href="/profile/{{$user->id}}"><img src="images/icon1.png" class=follow_icon></a></p>
+<p class="followlist_btn"><a href="/profile/{{$user->id}}"><img src="{{asset('storage/storage/'. $user -> images)}} " class=follow_icon></a></p>
 
 @endif
 @endif
@@ -29,17 +29,18 @@
 @foreach($posts as $post)
 
 <!-- useridが自分のことをフォローしていたら -->
-@if (auth()->user()->isFollowed($user->id))
+@if (auth()->user()->isFollowing($post->user_id))
+
 <!-- 自分以外表示 -->
 @if ($user->id !== Auth::user()->id)
 <li class=post_block>
   <div class=post_block1>
-  <p class="btn"><a href="/profile/{{$post->user_id}}"><img src="images/icon1.png" class=post_icon></a></p>
+  <p class="btn"><a href="/profile/{{$post->user_id}}"><img src="{{asset('storage/storage/'. $user -> images)}} " class=post_icon></a></p>
   <div class=post_content>
  <div class=post_name>{{ $post -> user -> username}}</div>
  <div class=post_post>{{ $post->post }}</div>
 </div>
- <div class=post_time>{{ $post -> created_at}}</div>
+ <div class=post_time>{{ $post -> created_at->format('Y/m/d H:i')}}</div>
 </div>
 @endif
 @endif

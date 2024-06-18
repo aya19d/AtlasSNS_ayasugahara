@@ -25,3 +25,12 @@ $(function () {
     return false;
   });
 });
+
+// 検索ワード
+function Click_Sub() {
+  if (document.all.div1.style.display == "none") {
+    document.all.div1.style.display = "block"
+  } else {
+    document.all.div1.style.display = "none"
+  }
+}

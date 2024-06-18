@@ -6,8 +6,10 @@
 <div class=prof_content>
        <div class=prof_icon><img src="{{ asset('images/icon1.png') }} "></div>
     <div class=prof_group>
+      <div class=prof_name>
        <div class=prof_title>ユーザー名</div>
        <div class=prof_text>{{ $user -> username}}</div>
+      </div>
        <div class=prof_title>自己紹介</div>
        <div class=prof_text>{{ $user -> bio}}</div>
      </div>
@@ -30,17 +32,20 @@
 
 <!-- 投稿表示 -->
    @foreach ($posts as $post)
-  <div class=prof_list>
-     <div><img src="{{ asset('images/icon1.png') }} " class=proflist_icon></div>
+  <li class=post_block>
+    <div class=post_block1>
+     <figure><img src="{{asset('storage/storage/'. $post -> user -> images)}} "  class=post_icon></figure>
+
     <div class=post_content>
       <div class=post_name>{{ $post -> user -> username}}</div>
-      <div class=post_time>{{ $post -> created_at}}</div>
-      <div class=post_post>{{ $post -> post }}</div>
+      <div class=post_post>{!! nl2br(htmlspecialchars($post->post)) !!}</div>
     </div>
-  </div>
+
+    <div class=post_time>{{ $post -> created_at->format('Y/m/d H:i') }}</div>
+   </div>
     @endforeach
 
-
+</li>
 
 
 @endsection

@@ -35,7 +35,7 @@
                    </ul>
                 </div>
 
-                <img src="{{ asset('images/icon1.png') }} " class=headicon>
+                <img src="{{asset('storage/storage/'.Auth::user()->images)}} " class=headicon>
             </div>
         </div>
 

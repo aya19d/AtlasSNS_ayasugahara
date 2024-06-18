@@ -6,11 +6,12 @@
         <form action="/search" method="post">
            @csrf
            <input type="text" name="keyword" class="search_form" placeholder="  ユーザー名">
-           <button type="submit" class="btn btn-success"><img src="images/search.png" class=search_image></button>
+           <button type="submit" class="btn btn-success" onclick="Click_Sub()"><img src="images/search.png" class=search_image></button>
         </form>
 
-        <p class=search_word>検索ワード：{{ $keyword }}</p>
-
+@if(request()->has('keyword'))
+        <p id=div1 class=search_word>検索ワード：{{ $keyword }}</p>
+@endif
 </div>
 
 <!-- 検索結果 -->
@@ -20,7 +21,7 @@
   <div class=search_list>
      <!-- 自分以外表示 -->
    @if ($user->id !== Auth::user()->id)
-    <figure><img src="images/{{ $user->images }}" class=search_icon></figure>
+    <figure><img src="{{asset('storage/storage/'. $user -> images)}} " class=search_icon></figure>
     <p class=search_name>{{ $user->username }}</p>
 
     <!-- フォローorフォロー解除 フォローしていなければフォローボタン、フォローしていればフォロー解除ボタンが表示される-->
