@@ -4,7 +4,7 @@
 
 <!-- 相手のプロフィール -->
 <div class=prof_content>
-       <div class=prof_icon><img src="{{ asset('images/icon1.png') }} "></div>
+       <div class=prof_icon><img src="{{asset('storage/storage/'. $user -> images)}} " class=prof_img></div>
     <div class=prof_group>
       <div class=prof_name>
        <div class=prof_title>ユーザー名</div>
