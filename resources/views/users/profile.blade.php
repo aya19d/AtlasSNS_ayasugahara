@@ -10,8 +10,10 @@
        <div class=prof_title>ユーザー名</div>
        <div class=prof_text>{{ $user -> username}}</div>
       </div>
+      <div class=prof_bio>
        <div class=prof_title>自己紹介</div>
        <div class=prof_text>{{ $user -> bio}}</div>
+       </div>
      </div>
 
 <!-- フォローorフォロー解除 フォローしていなければフォローボタン、フォローしていればフォロー解除ボタンが表示される-->

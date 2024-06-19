@@ -10,7 +10,8 @@
 @foreach($users as $user)
 
 <!-- useridを自分がフォローしていたら -->
-@if (auth()->user()->isFollowing($user->id))
+@if (auth()->user()->isFollowing($post->user_id)
+|| $post->user_id == Auth::user()->id)
 
 <!-- 自分以外表示 -->
 @if ($user->id !== Auth::user()->id)

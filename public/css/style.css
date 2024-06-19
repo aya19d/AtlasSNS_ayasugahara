@@ -650,6 +650,11 @@ label {
     margin: 10px 30px 10px 10px;
 }
 
+.prof_bio {
+    display: flex;
+
+}
+
 .prof_follow_btn {
     display: block;
     margin-left: auto;

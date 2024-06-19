@@ -29,7 +29,9 @@
 @foreach($posts as $post)
 
 <!-- useridが自分のことをフォローしていたら -->
-@if (auth()->user()->isFollowed($user->id))
+@if (auth()->user()->isFollowed($post->user_id)
+|| $post->user_id == Auth::user()->id)
+
 <!-- 自分以外表示 -->
 @if ($user->id !== Auth::user()->id)
 <li class=post_block>
