@@ -33,7 +33,8 @@
 || $post->user_id == Auth::user()->id)
 
 <!-- 自分以外表示 -->
-@if ($user->id !== Auth::user()->id)
+@if ($post->user_id !== Auth::user()->id)
+
 <li class=post_block>
   <div class=post_block1>
   <p class="btn"><a href="/profile/{{$post->user_id}}"><img src="{{asset('storage/storage/'. $post -> user -> images)}} " class=post_icon></a></p>

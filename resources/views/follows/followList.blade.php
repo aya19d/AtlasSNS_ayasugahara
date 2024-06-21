@@ -14,7 +14,7 @@
 || $post->user_id == Auth::user()->id)
 
 <!-- 自分以外表示 -->
-@if ($user->id !== Auth::user()->id)
+@if ($post->user_id !== Auth::user()->id)
 
 <p class="followlist_btn"><a href="/profile/{{$user->id}}"><img src="{{asset('storage/storage/'. $user -> images)}} " class=follow_icon></a></p>
 

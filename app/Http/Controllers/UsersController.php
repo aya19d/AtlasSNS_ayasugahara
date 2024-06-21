@@ -31,7 +31,7 @@ class UsersController extends Controller
 
      public function profile($id){
         $users = User::where('id',$id)->first();
-        $posts = Post::where('user_id',$id)->get();
+        $posts = Post::where('user_id',$id)->latest()->get();
     return view('users.profile',['user'=>$users,'posts'=>$posts]);
     }
 
