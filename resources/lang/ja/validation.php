@@ -153,7 +153,8 @@ return [
     'password' => 'パスワード',
     'password_confirmation' => 'パスワード確認',
     'required' => '必須項目',
-    'post' => '投稿'
+    'post' => '投稿',
+    'upPost' => '投稿',
 
     ],
 
