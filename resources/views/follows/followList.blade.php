@@ -10,11 +10,11 @@
 @foreach($users as $user)
 
 <!-- useridを自分がフォローしていたら -->
-@if (auth()->user()->isFollowing($post->user_id)
-|| $post->user_id == Auth::user()->id)
+@if (auth()->user()->isFollowing($user->id)
+|| $user->id == Auth::user()->id)
 
 <!-- 自分以外表示 -->
-@if ($post->user_id !== Auth::user()->id)
+@if ($user->id !== Auth::user()->id)
 
 <p class="followlist_btn"><a href="/profile/{{$user->id}}"><img src="{{asset('storage/storage/'. $user -> images)}} " class=follow_icon></a></p>
 
