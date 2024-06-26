@@ -32,7 +32,7 @@ class User extends Authenticatable
     public function following(): BelongsToMany
     {
         return $this->belongsToMany(Self::class,'follows','following_id','followed_id');
-        // →belongsToMany(このテーブル（Users Table）、中間テーブル（follows Table）、Users Tableのfollowing_id、Follows Tableのfollowed_id)
+        // →belongsToMany(このテーブル（Users Table）、中間テーブル（follows Table）、Users Tableのfollowing_id自分、Follows Tableのfollowed_id相手)
 
     }
 
